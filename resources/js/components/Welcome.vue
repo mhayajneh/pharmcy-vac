@@ -1,4 +1,3 @@
-
 <template>
     <div id="app">
         <l-map :center="[30.5852, 36.2384]" :zoom="7" style="height: 500px;" :options="mapOptions">
@@ -18,7 +17,7 @@
     import { geojson } from './data/py-departments-geojson'
     import paraguayGeojson from './data/paraguay.json'
     //import { pyDepartmentsData } from './data/py-departments-data'
-    import {LMap} from 'vue2-leaflet';
+    import {LMap, LPopup} from 'vue2-leaflet';
 
     export default {
         name: "app",
@@ -38,20 +37,18 @@
                     metric: ": pharmacies"
                 },
                 mapOptions: {
-                    attributionControl: false,
-                    onEachFeature: function onEachFeature(feature, layer) {
-                        layer.on('click', function(e) {
-                            //console.log(feature.properties.Name);
-                            console.log('oyeyyy');
-                            //open popup
-                            //.openPopup();  I tried this one but suspect it's not that simple
-                            //.openOn(map); This one can't work with Vue2Leaflet
-                        });
-                    }
-                },
-                currentStrokeColor: '3d3213'
+                    style: function style(feature) {
+                        return {
+                            weight: 4,
+                            opacity: 0.7,
+                            color: '#666',
+                            fillOpacity: 0.3
+                        };
+                    },
+                    onEachFeature: onEachFeature.bind(this),
+                }
             }
-        },
+                },
         mounted() {
 
             axios.get('/getPharmacyCount', {
@@ -61,6 +58,17 @@
                     console.log(response.data);
                 })
         },
+    }
+    function onEachFeature(feature, layer) {
+        layer.on({
+            mouseover: highlightFeature,
+            mouseout: resetHighlight,
+            click: zoomToFeature
+        });
+    }
+    function zoomToFeature(e) {
+        console.log(e.target.feature.properties.name);
+        map.fitBounds(e.target.getBounds());
     }
 </script>
 <style>

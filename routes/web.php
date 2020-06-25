@@ -57,6 +57,12 @@ Route::get('/deleteUser/{id}', 'DashboardController@deleteUser')->name('deleteUs
 Route::get('/addNewUser', 'DashboardController@addNewUser')->name('addNewUser');
 
 Route::post('addAdminUser', 'DashboardController@addAdminUser')->name('addAdminUser');
+Route::get('/getPharmacaCount', 'DashboardController@getPharmacaCount')->name('getPharmacaCount');
+
+Route::get('/getCountryPharma/{name}', 'DashboardController@getCountryPharma')->name('getCountryPharma');
+Route::post('/updateFilterCity', 'DashboardController@updateFilterCity')->name('updateFilterCity');
+
+
 
 
 

@@ -1927,7 +1927,6 @@ var _data_paraguay_json__WEBPACK_IMPORTED_MODULE_2___namespace = /*#__PURE__*/__
 //
 //
 //
-//
 
 
  //import { pyDepartmentsData } from './data/py-departments-data'
@@ -1951,17 +1950,16 @@ var _data_paraguay_json__WEBPACK_IMPORTED_MODULE_2___namespace = /*#__PURE__*/__
         metric: ": pharmacies"
       },
       mapOptions: {
-        attributionControl: false,
-        onEachFeature: function onEachFeature(feature, layer) {
-          layer.on('click', function (e) {
-            //console.log(feature.properties.Name);
-            console.log('oyeyyy'); //open popup
-            //.openPopup();  I tried this one but suspect it's not that simple
-            //.openOn(map); This one can't work with Vue2Leaflet
-          });
-        }
-      },
-      currentStrokeColor: '3d3213'
+        style: function style(feature) {
+          return {
+            weight: 4,
+            opacity: 0.7,
+            color: '#666',
+            fillOpacity: 0.3
+          };
+        },
+        onEachFeature: onEachFeature.bind(this)
+      }
     };
   },
   mounted: function mounted() {
@@ -1973,6 +1971,19 @@ var _data_paraguay_json__WEBPACK_IMPORTED_MODULE_2___namespace = /*#__PURE__*/__
     });
   }
 });
+
+function onEachFeature(feature, layer) {
+  layer.on({
+    mouseover: highlightFeature,
+    mouseout: resetHighlight,
+    click: zoomToFeature
+  });
+}
+
+function zoomToFeature(e) {
+  console.log(e.target.feature.properties.name);
+  map.fitBounds(e.target.getBounds());
+}
 
 /***/ }),
 

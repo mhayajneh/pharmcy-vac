@@ -61,4 +61,17 @@ class User extends Authenticatable implements MustVerifyEmail
       return $colors[$index];
     }*/
 
+    public function getPharmas() {
+        $pharmacy = ['Amman','Aqabah','Mafraq','At-Tafilah','Maan','Irbid','Ajlun','Jarash','Al-Balqa','Madaba','Al-Karak','Az-Zarqa'];
+        $count = 1;
+        $result = [];
+        foreach ($pharmacy as $pharm) {
+
+            $pharmacount = \DB::table('users')->where('city', $pharm)->count();
+            $result[] = ['department_id'=> $count,'department_name'=>$pharm,'amount_w'=> $pharmacount];
+            $count++;
+        }
+        return \Response::json($result, 200);
+    }
+
 }

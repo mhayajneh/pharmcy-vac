@@ -3,6 +3,7 @@
 use App\Models\User;
 
 use Illuminate\Database\Seeder;
+use Illuminate\Support\Facades\Hash;
 
 class UsersTableSeeder extends Seeder
 {
@@ -16,7 +17,8 @@ class UsersTableSeeder extends Seeder
     User::create([
       'name' => 'admin',
       'email' => 'admin@admin.com',
-      'password' => \Illuminate\Support\Facades\Hash::make('admin'),
+      'type' => 1,
+      'password' => Hash::make('admin123'),
       'email_verified_at' => now()
     ]);
   }

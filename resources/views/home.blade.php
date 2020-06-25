@@ -43,6 +43,7 @@
                 var url = '/pharmacy/'+id;
                 window.location = url;
             });
+
         });
     </script>
 

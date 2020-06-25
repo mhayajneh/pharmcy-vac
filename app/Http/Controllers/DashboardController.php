@@ -111,7 +111,7 @@ class DashboardController extends Controller
     }
 
     public function home() {
-        return view('home');
+        return view('welcome');
     }
 
     public function getPharmacyCount() {
@@ -228,6 +228,31 @@ class DashboardController extends Controller
         flash('User has been successfully added.')->success();
         return back();
 
+    }
+
+    public function getPharmacaCount() {
+        $pharmacy = ['Amman','Aqabah','Mafraq','At-Tafilah','Maan','Irbid','Ajlun','Jarash','Al-Balqa','Madaba','Al-Karak','Az-Zarqa'];
+        $result = [];
+        foreach ($pharmacy as $pharm) {
+
+            $pharmacount = \DB::table('users')->where('city', $pharm)->count();
+            $result[] = ['name'=>$pharm,'density'=> $pharmacount];
+        }
+        return \Response::json($result, 200);
+
+    }
+
+    public function getCountryPharma($city) {
+      $pharmas = User::where('type',2)->where('city', $city)->get();
+        $filter = '';
+        return view('pharmacy.countryPharmacy',compact('pharmas','city','filter'));
+    }
+
+    public function updateFilterCity(Request $request) {
+        $pharmas = User::where('type',2)->where('city', $request->city)->where('name', 'like', '%' . $request->name . '%')->get();
+        $city = $request->city;
+        $filter = $request->name;
+        return view('pharmacy.countryPharmacy',compact('pharmas','city','filter'));
     }
 
 }
