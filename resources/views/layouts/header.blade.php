@@ -3,7 +3,7 @@
   <div class="container">
     <div class="d-flex">
       <a class="header-brand" href="{{ url('/') }}">
-        <img src="{{ $logo_url }}" class="header-brand-img" alt="{{ config('app.name', 'Laravel') }}">
+        <img src="/logo.jpg"  class="header-brand-img" alt="{{ config('app.name', 'PharmaPhile') }}">
       </a>
       <div class="d-flex order-lg-2 ml-auto">
       @guest
