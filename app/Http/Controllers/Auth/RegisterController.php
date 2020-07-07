@@ -65,6 +65,10 @@ class RegisterController extends Controller
     protected function create(array $data)
     {
         if ($data['type'] == '2') {
+            $file_extention = $data['image']->getClientOriginalExtension();
+            $file_name = 'image_'. $data['number'] . "_profile." .$file_extention;
+            $file_path = $data['image']->storeAs('image', $file_name);
+
             return User::create([
                 'name' => $data['name'],
                 'email' => $data['email'],
@@ -73,22 +77,21 @@ class RegisterController extends Controller
                 'location' => $data['location'],
                 'area' => $data['area'],
                 'city' => $data['city'],
+                'image' => $file_name,
+                'manager' => $data['manager'],
+                'students' => $data['students'],
                 'password' => Hash::make($data['password']),
             ]);
         } elseif ($data['type'] == '3') {
-
-            $file_extention = $data['usercv']->getClientOriginalExtension();
-            $file_name = 'cv_'. $data['number'] . "_profile." .$file_extention;
-            $file_path = $data['usercv']->storeAs('cv', $file_name);
-
-
 
             return User::create([
                 'name' => $data['name'],
                 'email' => $data['email'],
                 'type' => $data['type'],
                 'number' => $data['number'],
-                'cv_path' => $file_name,
+                'letter' => $data['letter'],
+                'university' => $data['university'],
+                'university_number' => $data['university_number'],
                 'password' => Hash::make($data['password']),
             ]);
         }

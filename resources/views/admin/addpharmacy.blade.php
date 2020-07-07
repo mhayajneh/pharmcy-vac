@@ -53,6 +53,20 @@
                         </select>
                     </div>
 
+                    <div class="form-group" id="manager-div">
+                        <Label for="manager" class="form-label"> Manager </Label>
+                        <input type="text" name="manager" id="manager" class="form-control">
+                    </div>
+
+                    <div class="form-group" id="image-div" style="display:none;">
+                        <Label for="image" class="form-label"> Image: </Label>
+                        <input type="file" name="image" id="image" class="form-control">
+                    </div>
+                    <div class="form-group" id="students-div">
+                        <Label for="students" class="form-label"> Number of students </Label>
+                        <input type="number" min="2" max="5" name="students" id="students" class="form-control">
+                    </div>
+
                     <div class="form-group">
                         {!! Form::label('password', __('Password'), ['class' => 'form-label']) !!}
                         {!! Form::password('password', ['class' => 'form-control' . ($errors->has('password ') ? ' is-invalid' : ''), 'placeholder' => 'Password']) !!}

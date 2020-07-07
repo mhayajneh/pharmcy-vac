@@ -52,6 +52,15 @@
                             <option value="Az-Zarqa" <?php if($user->city == 'Az-Zarqa') {echo 'selected';} ?>>Az-Zarqa</option>
                         </select>
                     </div>
+                    <div class="form-group" id="manager-div">
+                        <Label for="manager" class="form-label"> Manager </Label>
+                        <input type="text" name="manager" id="manager" value="{{$user->manager}}" class="form-control">
+                    </div>
+
+                    <div class="form-group" id="students-div">
+                        <Label for="students" class="form-label"> Number of students </Label>
+                        <input type="number" min="2" max="5" name="students" value="{{$user->students}}"  id="students" class="form-control">
+                    </div>
 
                     <div class="form-group">
                         {!! Form::label('password', __('Password'), ['class' => 'form-label']) !!}

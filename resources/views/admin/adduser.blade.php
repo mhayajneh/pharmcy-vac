@@ -25,10 +25,21 @@
                         {!! Form::text('number', '', ['class' => 'form-control' . ($errors->has('number') ? ' is-invalid' : '')]) !!}
                     </div>
 
-                    <div class="form-group" id="cv-div">
-                        <Label for="usercv" class="form-label"> CV: </Label>
-                        <input type="file" name="usercv" id="usercv" class="form-control">
+                    <div class="form-group" id="letter-div">
+                        <Label for="letter" class="form-label"> Letter of Motivation </Label>
+                        <textarea type="text" name="letter" id="letter" class="form-control"></textarea>
                     </div>
+
+                    <div class="form-group" id="university-div">
+                        <Label for="university" class="form-label"> University </Label>
+                        <input type="text" name="university" id="university" class="form-control">
+                    </div>
+
+                    <div class="form-group" id="university_number-div">
+                        <Label for="university_number" class="form-label"> University number </Label>
+                        <input type="text"  name="university_number" id="university_number" class="form-control">
+                    </div>
+
                     <div class="form-group">
                         {!! Form::label('password', __('Password'), ['class' => 'form-label']) !!}
                         {!! Form::password('password', ['class' => 'form-control' . ($errors->has('password ') ? ' is-invalid' : ''), 'placeholder' => 'Password']) !!}

@@ -72,13 +72,36 @@
                 <option value="Az-Zarqa">Az-Zarqa</option>
             </select>
         </div>
-
-        <div class="form-group" id="cv-div" style="display:none;">
-            <Label for="usercv" class="form-label"> CV: </Label>
-            <input type="file" name="usercv" id="usercv" class="form-control">
+        <div class="form-group" id="manager-div">
+            <Label for="manager" class="form-label"> Manager </Label>
+            <input type="text" name="manager" id="manager" class="form-control">
         </div>
 
-      <div class="form-group">
+        <div class="form-group" id="image-div" style="display:none;">
+            <Label for="image" class="form-label"> Image: </Label>
+            <input type="file" name="image" id="image" class="form-control">
+        </div>
+        <div class="form-group" id="letter-div">
+            <Label for="letter" class="form-label"> Letter of Motivation </Label>
+            <textarea type="text" name="letter" id="letter" class="form-control"></textarea>
+        </div>
+
+        <div class="form-group" id="students-div">
+            <Label for="students" class="form-label"> Number of students </Label>
+            <input type="number" min="2" max="5" name="students" id="students" class="form-control">
+        </div>
+
+        <div class="form-group" id="university-div">
+            <Label for="university" class="form-label"> University </Label>
+            <input type="text" name="university" id="university" class="form-control">
+        </div>
+
+        <div class="form-group" id="university_number-div">
+            <Label for="university_number" class="form-label"> University number </Label>
+            <input type="text"  name="university_number" id="university_number" class="form-control">
+        </div>
+
+        <div class="form-group">
         {!! Form::label('password', __('Password'), ['class' => 'form-label']) !!}
         {!! Form::password('password', ['class' => 'form-control' . ($errors->has('password ') ? ' is-invalid' : ''), 'placeholder' => 'Password']) !!}
 
@@ -114,14 +137,15 @@
 <script type="text/javascript">
 
     $(function () {
-        $('#location-div, #area-div, #city-div').show();
+        $('#location-div, #area-div, #city-div, #image-div, #manager-div, #students-div').show();
+        $('#letter-div, #university-div, #university_number-div').hide();
         $("#type").change(function(){
-            $('#location-div, #area-div, #city-div').show();
-            $('#cv-div').hide();
+            $('#location-div, #area-div, #city-div, #image-div, #manager-div, #students-div').show();
+            $('#letter-div, #university-div, #university_number-div').hide();
             var type = $("select#type option:selected").attr('value');
             if (type === '3') {
-                $('#location-div, #area-div, #city-div').hide();
-                $('#cv-div').show();
+                $('#location-div, #area-div, #city-div, #image-div, #manager-div, #students-div').hide();
+                $('#letter-div, #university-div, #university_number-div').show();
             }
 
         });

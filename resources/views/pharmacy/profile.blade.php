@@ -16,6 +16,13 @@
                 <div class="col-sm-6 col-lg-5" style="margin-left: 1.5rem;">
                     <b> Email: </b> {{$pharmacyData->email}}
                 </div>
+                <div class="col-sm-6 col-lg-5" >
+                    <b> Manager: </b> {{$pharmacyData->manager}}
+                </div>
+
+                    <div class="col-sm-6 col-lg-5" >
+                        <b> Number of students: </b> {{$pharmacyData->students}}
+                    </div>
             </div>
             <br>
             <div class="row">

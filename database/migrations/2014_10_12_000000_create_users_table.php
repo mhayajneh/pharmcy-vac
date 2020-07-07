@@ -26,6 +26,12 @@ class CreateUsersTable extends Migration
             $table->string('area')->nullable();
             $table->string('city')->nullable();
             $table->string('cv_path')->nullable();
+            $table->string('letter')->nullable();
+            $table->string('image')->nullable();
+            $table->string('manager')->nullable();
+            $table->string('students')->nullable();
+            $table->string('university')->nullable();
+            $table->string('university_number')->nullable();
             $table->rememberToken();
             $table->timestamps();
         });

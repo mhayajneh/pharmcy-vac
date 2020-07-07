@@ -12,7 +12,7 @@
 */
 
 Route::get('/', function () {
-    return view('home');
+    return \Illuminate\Support\Facades\Redirect::route('home');
 });
 
 Auth::routes(['verify' => true]);

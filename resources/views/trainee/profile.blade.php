@@ -23,11 +23,17 @@
                     <b> Number: </b> {{$user->number}}
                 </div>
 
-                @if($user->cv_path)
-                    <div class="col-sm-6 col-lg-5">
-                        <a href="{{ route('downloadTraineeCv', $user->id) }}" class="btn btn-danger">Download CV</a>
-                    </div>
-                @endif
+                <div class="col-sm-6 col-lg-5" style="margin-left: 10px;">
+                    <b> Letter: </b> {{$user->letter}}
+                </div>
+
+                <div class="col-sm-6 col-lg-5" style="margin-left: 10px;">
+                    <b> University: </b> {{$user->university}}
+                </div>
+
+                <div class="col-sm-6 col-lg-5" style="margin-left: 10px;">
+                    <b> University number: </b> {{$user->university_number}}
+                </div>
             </div>
             <br>
 

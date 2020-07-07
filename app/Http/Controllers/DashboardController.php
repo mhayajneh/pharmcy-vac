@@ -55,14 +55,10 @@ class DashboardController extends Controller
           'name' => $request->name,
           'email' => $request->email,
           'number' => $request->number,
+          'university' => $request->university,
+          'letter' => $request->letter,
+          'university_number' => $request->university_number
       ];
-
-      if($request->has('usercv')) {
-          $file_extention = $request->usercv->getClientOriginalExtension();
-          $file_name = 'cv_'. $request->number . "_profile." .$file_extention;
-          $request->usercv->storeAs('cv', $file_name);
-          $userArr['cv_path'] = $file_name;
-      }
 
       if ($request->password) {
         $userArr['password'] = Hash::make($request->password);
@@ -90,8 +86,16 @@ class DashboardController extends Controller
             'city' => $request->city,
             'area' => $request->area,
             'location' => $request->location,
+            'manager' => $request->manager,
+            'students' => $request->students,
         ];
 
+        if($request->has('image')) {
+            $file_extention = $request->usercv->getClientOriginalExtension();
+            $file_name = 'image_'. $request->number . "_profile." .$file_extention;
+            $request->usercv->storeAs('image', $file_name);
+            $userArr['image'] = $file_name;
+        }
         if ($request->password) {
             $userArr['password'] = Hash::make($request->password);
         }
@@ -202,6 +206,15 @@ class DashboardController extends Controller
       $user->area = $request->area;
       $user->city = $request->city;
       $user->password = Hash::make($request->password);
+      $user->manager = $request->manager;
+      $user->students = $request->students;
+        if($request->has('image')) {
+            $file_extention = $request->usercv->getClientOriginalExtension();
+            $file_name = 'image_'. $request->number . "_profile." .$file_extention;
+            $request->usercv->storeAs('image', $file_name);
+            $userArr['image'] = $file_name;
+        }
+        $user->image = $file_name;
       $user->save();
         flash('Pharmacy has been successfully added.')->success();
         return back();
@@ -215,13 +228,9 @@ class DashboardController extends Controller
         $user->email = $request->email;
         $user->number = $request->number;
         $user->password = Hash::make($request->password);
-
-        if($request->has('usercv')) {
-            $file_extention = $request->usercv->getClientOriginalExtension();
-            $file_name = 'cv_'. $request->number . "_profile." .$file_extention;
-            $request->usercv->storeAs('cv', $file_name);
-            $user->cv_path = $file_name;
-        }
+        $user->university = $request->university;
+        $user->university_number = $request->university_number;
+        $user->letter = $request->letter;
 
         $user->save();
 

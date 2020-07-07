@@ -12,7 +12,7 @@ class Donation extends Model
    * @var array
    */
   protected $fillable = [
-      'id', 'name', 'email', 'city', 'zip', 'amount', 'source', 'state_id', 'updated_at', 'created_at'
+      'id', 'name', 'email', 'city', 'zip', 'amount', 'source', 'state_id', 'image', 'updated_at', 'created_at'
   ];
 
 
