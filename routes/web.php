@@ -14,7 +14,7 @@
 Route::get('/', function () {
     return \Illuminate\Support\Facades\Redirect::route('home');
 });
-
+Route::post('/review/pharmcy', 'ReviewController@store')->name('pharmc.review');
 Auth::routes(['verify' => true]);
 
 //Route::middleware(['verified'])->group(function () {

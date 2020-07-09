@@ -6,6 +6,7 @@ use App\Models\TrainingPositions;
 use App\Models\User;
 use App\Models\UserTrainings;
 use App\Models\State;
+use App\Review;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Hash;
 
@@ -28,7 +29,10 @@ class DashboardController extends Controller
   public function viewPharmacy($id) {
       $trainingPos = TrainingPositions::where('pharmacy_id',$id)->get();
       $pharmacyData = User::find($id);
-      return view('pharmacy.profile' ,compact(['trainingPos','pharmacyData']));
+      $relatedPharmcies = User::where('type', 2)->where('id','!=', $id)->where('city' , '=' , $pharmacyData->city)->get();
+      $reviews = Review::where('pharm_id', $id)->get();
+      $rating = Review::getAvg($id);
+      return view('pharmacy.profile' ,compact(['trainingPos','pharmacyData', 'relatedPharmcies', 'reviews', 'rating']));
   }
 
   public function viewTrainee($id) {
