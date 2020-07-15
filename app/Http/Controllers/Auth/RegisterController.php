@@ -65,9 +65,7 @@ class RegisterController extends Controller
     protected function create(array $data)
     {
         if ($data['type'] == '2') {
-            $file_extention = $data['image']->getClientOriginalExtension();
-            $file_name = 'image_'. $data['number'] . "_profile." .$file_extention;
-            $file_path = $data['image']->storeAs('image', $file_name);
+            $file_path =  request()->file('image')->store('image');
 
             return User::create([
                 'name' => $data['name'],
@@ -77,7 +75,7 @@ class RegisterController extends Controller
                 'location' => $data['location'],
                 'area' => $data['area'],
                 'city' => $data['city'],
-                'image' => $file_name,
+                'image' => $file_path,
                 'manager' => $data['manager'],
                 'students' => $data['students'],
                 'password' => Hash::make($data['password']),

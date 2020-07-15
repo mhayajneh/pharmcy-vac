@@ -95,10 +95,7 @@ class DashboardController extends Controller
         ];
 
         if($request->has('image')) {
-            $file_extention = $request->usercv->getClientOriginalExtension();
-            $file_name = 'image_'. $request->number . "_profile." .$file_extention;
-            $request->usercv->storeAs('image', $file_name);
-            $userArr['image'] = $file_name;
+            $userArr['image'] = request()->file('image')->store('image');
         }
         if ($request->password) {
             $userArr['password'] = Hash::make($request->password);
@@ -213,10 +210,8 @@ class DashboardController extends Controller
       $user->manager = $request->manager;
       $user->students = $request->students;
         if($request->has('image')) {
-            $file_extention = $request->usercv->getClientOriginalExtension();
-            $file_name = 'image_'. $request->number . "_profile." .$file_extention;
-            $request->usercv->storeAs('image', $file_name);
-            $userArr['image'] = $file_name;
+            $userArr['image'] = $file_name = request()->file('image')->store('image');
+
         }
         $user->image = $file_name;
       $user->save();
