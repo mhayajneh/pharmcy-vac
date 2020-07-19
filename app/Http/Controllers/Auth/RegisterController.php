@@ -65,7 +65,10 @@ class RegisterController extends Controller
     protected function create(array $data)
     {
         if ($data['type'] == '2') {
-            $file_path =  request()->file('image')->store('image');
+            $dest = 'assets/uploads/pharm';
+            $image = request()->file('image')->getClientOriginalName();
+            request()->file('image')->move($dest,$image);
+            $file_path =  $image;
 
             return User::create([
                 'name' => $data['name'],
@@ -73,7 +76,6 @@ class RegisterController extends Controller
                 'type' => $data['type'],
                 'number' => $data['number'],
                 'location' => $data['location'],
-                'area' => $data['area'],
                 'city' => $data['city'],
                 'image' => $file_path,
                 'manager' => $data['manager'],
@@ -87,7 +89,6 @@ class RegisterController extends Controller
                 'email' => $data['email'],
                 'type' => $data['type'],
                 'number' => $data['number'],
-                'letter' => $data['letter'],
                 'university' => $data['university'],
                 'university_number' => $data['university_number'],
                 'password' => Hash::make($data['password']),

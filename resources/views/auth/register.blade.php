@@ -49,10 +49,6 @@
             <input type="text" name="location" id="location" class="form-control">
 
         </div>
-        <div class="form-group" id="area-div">
-            <Label for="area" class="form-label"> Area </Label>
-          <input type="text" name="area" id="area" class="form-control">
-        </div>
 
         <div class="form-group" id="city-div">
             <Label for="city" class="form-label"> City </Label>
@@ -81,11 +77,6 @@
             <Label for="image" class="form-label"> Image: </Label>
             <input type="file" name="image" id="image" class="form-control">
         </div>
-        <div class="form-group" id="letter-div">
-            <Label for="letter" class="form-label"> Letter of Motivation </Label>
-            <textarea type="text" name="letter" id="letter" class="form-control"></textarea>
-        </div>
-
         <div class="form-group" id="students-div">
             <Label for="students" class="form-label"> Number of students </Label>
             <input type="number" min="2" max="5" name="students" id="students" class="form-control">

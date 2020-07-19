@@ -95,7 +95,10 @@ class DashboardController extends Controller
         ];
 
         if($request->has('image')) {
-            $userArr['image'] = request()->file('image')->store('image');
+            $dest = 'assets/uploads/pharm';
+            $image = request()->file('image')->getClientOriginalName();
+            request()->file('image')->move($dest,$image);
+            $userArr['image'] = $image;
         }
         if ($request->password) {
             $userArr['password'] = Hash::make($request->password);
@@ -210,10 +213,13 @@ class DashboardController extends Controller
       $user->manager = $request->manager;
       $user->students = $request->students;
         if($request->has('image')) {
-            $userArr['image'] = $file_name = request()->file('image')->store('image');
+            $dest = 'assets/uploads/pharm';
+            $image = request()->file('image')->getClientOriginalName();
+            request()->file('image')->move($dest,$image);
+            $userArr['image'] = $image;
 
         }
-        $user->image = $file_name;
+        $user->image = $image;
       $user->save();
         flash('Pharmacy has been successfully added.')->success();
         return back();
