@@ -7,6 +7,7 @@ use App\Http\Controllers\Controller;
 use Illuminate\Support\Facades\Hash;
 use Illuminate\Support\Facades\Validator;
 use Illuminate\Foundation\Auth\RegistersUsers;
+use Illuminate\Support\Str;
 
 class RegisterController extends Controller
 {
@@ -53,6 +54,7 @@ class RegisterController extends Controller
              'email' => 'required|string|email|max:255|unique:users',
              'number' => 'required|unique:users',
              'password' => 'required|string|min:6|confirmed',
+            'image' => 'required|image'
         ]);
     }
 
@@ -66,9 +68,10 @@ class RegisterController extends Controller
     {
         if ($data['type'] == '2') {
             $dest = 'assets/uploads/pharm';
-            $image = request()->file('image')->getClientOriginalName();
-            request()->file('image')->move($dest,$image);
-            $file_path =  $image;
+            $image = request()->file('image');
+            $fileName = Str::random(10) . '.' . $image->guessClientExtension();
+            $image->move($dest,$fileName);
+            $file_path =  $fileName;
 
             return User::create([
                 'name' => $data['name'],
