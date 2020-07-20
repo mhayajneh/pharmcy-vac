@@ -56,7 +56,7 @@
                         <div class="col-3">
                             <a href="{{route('pharmacy.view', $pos->id)}}">
                                 <div class="card" >
-                                    <img class="card-img-top" src="{{'assets/uploads/pharm/' . $pos->image}}"  alt="Card image cap">
+                                    <img class="card-img-top" src="{{'/assets/uploads/pharm/' . $pos->image}}"  alt="Card image cap">
                                     <div class="card-body">
                                         <p class="card-title">{{ $pos->name }}</p>
                                         <p class="card-text">{{$pos->email}} <br> {{$pos->number}} <br> {{$pos->location}} <br>  {{$pos->city}} <br> {{$pos->manager}}</p>
