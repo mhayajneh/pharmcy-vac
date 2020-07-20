@@ -112,7 +112,7 @@
                                 <td>
                                     @if(isset(\Auth::user()->type) && \Auth::user()->type == '2')
                                         <div class="item-action dropdown">
-                                            <a href="javascript:void(0)" data-toggle="dropdown" class="icon"><i class="fe fe-more-vertical"></i></a>
+                                            <a href="javascript:void(0)" data-toggle="dropdown" class="btn btn-primary">View</a>
                                             <div class="dropdown-menu">
                                                 <a href="{{ route('viewTrainees', $pos->id) }}" class="dropdown-item"><i class="dropdown-icon fe fe-delete"></i> View</a>
                                                 <a href="{{ route('viewTrainees', $pos->id) }}" class="dropdown-item"><i class="dropdown-icon fe fe-edit-2"></i> Edit</a>
