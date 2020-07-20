@@ -9,6 +9,7 @@ use App\Models\State;
 use App\Review;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Hash;
+use Illuminate\Support\Str;
 
 class DashboardController extends Controller
 {
@@ -96,9 +97,10 @@ class DashboardController extends Controller
 
         if($request->has('image')) {
             $dest = 'assets/uploads/pharm';
-            $image = request()->file('image')->getClientOriginalName();
-            request()->file('image')->move($dest,$image);
-            $userArr['image'] = $image;
+            $image = request()->file('image');
+            $fileName = Str::random(10) . '.' . $image->guessClientExtension();
+            $image->move($dest,$fileName);
+            $userArr['image'] = $fileName;
         }
         if ($request->password) {
             $userArr['password'] = Hash::make($request->password);
@@ -214,12 +216,13 @@ class DashboardController extends Controller
       $user->students = $request->students;
         if($request->has('image')) {
             $dest = 'assets/uploads/pharm';
-            $image = request()->file('image')->getClientOriginalName();
-            request()->file('image')->move($dest,$image);
-            $userArr['image'] = $image;
+            $image = request()->file('image');
+            $fileName = Str::random(10) . '.' . $image->guessClientExtension();
+            $image->move($dest,$fileName);
+            $userArr['image'] = $fileName;
+            $user->image = $fileName;
 
         }
-        $user->image = $image;
       $user->save();
         flash('Pharmacy has been successfully added.')->success();
         return back();
