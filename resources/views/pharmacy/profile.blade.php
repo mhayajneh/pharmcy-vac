@@ -174,7 +174,7 @@
                     <div class="col-md-12">
                         <form accept-charset="UTF-8" action="{{route('pharmc.review')}}" method="post">
                             @csrf
-                            <input class="form-control" placeholder="Title" name="title">
+                            <input class="form-control" placeholder="Name" name="title">
                             <input type="hidden" name="pharm_id" value="{{$pharmacyData->id}}">
                             <input type="hidden" @if(\Illuminate\Support\Facades\Auth::id()) value="{{\Illuminate\Support\Facades\Auth::id()}}" @endif  name="user_id">
                             <input id="ratings-hidden" name="rating" type="hidden">
