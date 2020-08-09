@@ -61,9 +61,6 @@
             <br>
 
             <div class="row">
-                <div class="col-sm-6 col-lg-5" style="margin-left: 10px;">
-                    <b> Area: </b> {{$pharmacyData->area}}
-                </div>
 
                 <div class="col-sm-6 col-lg-5">
                     <b> City: </b> {{$pharmacyData->city}}
