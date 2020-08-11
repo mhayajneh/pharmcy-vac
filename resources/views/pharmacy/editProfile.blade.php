@@ -29,11 +29,6 @@
                         <input type="text" name="location" id="location" class="form-control" value="{{$user->location}}">
 
                     </div>
-                    <div class="form-group" id="area-div">
-                        <Label for="area" class="form-label"> Area </Label>
-                        <input type="text" name="area" id="area" class="form-control" value="{{$user->area}}">
-                    </div>
-
                     <div class="form-group" id="city-div">
                         <Label for="city" class="form-label"> City </Label>
                         <select name="city" id="city" class="form-control">
